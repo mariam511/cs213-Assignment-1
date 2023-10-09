@@ -1,4 +1,4 @@
-// Program: demo2.cpp
+// Program: assignment1 part1
 // Purpose: Demonstrate use of bmplip for handling
 //          bmp colored and grayscale images
 //          Program load a gray image and store in another file
