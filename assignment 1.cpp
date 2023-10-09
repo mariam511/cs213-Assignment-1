@@ -305,16 +305,15 @@ void darken_And_Lighten() {
     if (choice == "darken") {
         for (int i = 0; i < SIZE; i++) {
              for (int j = 0; j < SIZE; j++) {
-                 image[i][j] = (image[i][j]*0.5);  // in this line of code we are multiplying each pixel by half to darken it
-                // if pixel =0 ----> 0 * 0.5 = 0 so it will be fully darked
+                 image[i][j] =  (image[i][j])/2;// in this line we are adding zero to the main pixel and getting the average of the original image and the dark one
+                                                // to make it darker by 50%
             }
         }
     } else if (choice == "lighten") {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] = min(image[i][j] * 1.5,
-                                  255.0);    //  in this line we are multipying each pixel by extra 1.5 from it's orginal value
-                //  in this line we are making sure that the multiplyed value will not exceed 255
+                image[i][j] =  (image[i][j]+255)/2;   // in this line we are adding 255 to the main pixel and getting the average of both the white image and the original
+                                                // to make it brighter by 50%
 
             }
         }
