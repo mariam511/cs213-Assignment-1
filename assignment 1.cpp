@@ -319,4 +319,3 @@ void darken_And_Lighten() {
         }
     }
 }
-
