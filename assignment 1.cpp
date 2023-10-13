@@ -18,6 +18,7 @@ using namespace std;
 unsigned char image[SIZE][SIZE];
 unsigned char image1[SIZE][SIZE];
 unsigned char image2[SIZE][SIZE];
+
 string effect;
 void loadImage ();
 
@@ -36,13 +37,17 @@ void saveImage ();
 /*5*/ void rotate_Images();
 
 /*6*/void darken_And_Lighten();
+
 /*7*/void mirror();
+
+ /*8*/ void Detect_Edges();
+
 
 
 int main()
 {
     cout<<" enter the number of the filter you want from here : "<<endl; //knowing the effect to call it's specicif function
-    cout<<"1-black_white\n"<<"2-invert\n"<<"3-merge\n"<<"4-flip\n"<<"5-rotate\n"<<"6-darken_And_Lighten : \n"<<"7-mirror ";
+    cout<<"1-black_white\n"<<"2-invert\n"<<"3-merge\n"<<"4-flip\n"<<"5-rotate\n"<<"6-darken_And_Lighten \n"<<"7-mirror \n"<<"8-Detect edges \n";
     cin>>effect;
     cout<<endl;
     loadImage();
@@ -79,6 +84,11 @@ int main()
     if (effect=="7")
     {
         mirror();
+    }
+
+    if(effect=="8")
+    {
+     Detect_Edges();
     }
     
 
@@ -368,4 +378,30 @@ void mirror(){
     }
    }
 
+}
+void Detect_Edges() {
+    unsigned char detect_image[SIZE][SIZE];
+    for (int j = 0; j < SIZE-1; j++)
+    {
+        for (int i = 0; i< SIZE-1; i++) 
+        {
+
+            if(image[i][j]==image[i+1][j+1])
+            {
+                detect_image[i][j] = image[i][j];
+            }
+            if((abs(image[i][j]-image[i+1][j]>=24))||(abs(image[i][j]-image[i][j+1]>=24))){
+                detect_image[i][j] = 0;
+            }
+            else{
+                detect_image[i][j] = 255;
+            }
+        }
+    }
+    for (int j = 0; j < SIZE-1; j++)
+    {
+        for (int i = 0; i< SIZE-1; i++) {
+            image[i][j] = detect_image[i][j];
+        }
+    }
 }
