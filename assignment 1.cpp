@@ -37,22 +37,23 @@ void saveImage ();
 
 /*6*/void darken_And_Lighten();
 
-/*7*/ void Detect_Edges();
+/*7*/void Detect_Edges();
 
 /*8*/ void EnlargeImage();
 
+/*9*/ void shrinkImage();
 
-/*9*/
-
-/*a*/void mirror();
+/*a*/ void mirror();
 
 /*b*/
 
-/*c*/
+/*c*/ void BlurImage();
 
 /*d*/
 
 /*e,f*/
+
+
 
 int main()
 {
