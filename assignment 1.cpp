@@ -68,41 +68,41 @@ int main()
         Black_And_White_Image();
     }
 
-    if (effect=="2")
+    else if (effect=="2")
     {
         Invert_Image();
     }
 
-    if (effect=="3")
+    else if (effect=="3")
     {
         loadImage1();
         merge();
     }
 
-    if(effect=="4"){
+    else if(effect=="4"){
         flip_image();
     }
 
-    if(effect=="5"){
+    else if(effect=="5"){
         rotate_Images();
     }
 
-    if (effect=="6")
+    else if (effect=="6")
     {
         darken_And_Lighten();
     }
 
-    if (effect=="7")
+    else if (effect=="7")
     {
-        mirror();
+        Detect_Edges();
     }
 
-    if(effect=="8")
+    else if(effect=="8")
     {
-     Detect_Edges();
+     EnlargeImage();
     }
+
     
-
     saveImage();
     return 0;
 }
@@ -347,6 +347,73 @@ void darken_And_Lighten() {
     }
 
 }
+//------------------------------------------------
+
+void EnlargeImage() {
+    unsigned char temp[SIZE][SIZE];
+
+    cout << "Which quarter do you want to enlarge? 1,2,3 or 4\n"; //choose  what degree do you want to rotate the image
+    int n;
+    cin >> n;
+
+    if (n == 1) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                temp[i][j] = image[i / 2][j / 2];
+            }
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = temp[i][j]; //get image[i][j] values from the temp ones
+
+
+            }
+        }
+    }
+    if (n == 2) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                temp[i][j] = image[i / 2][((j / 2) + SIZE / 2)];
+            }
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = temp[i][j]; //get image[i][j] values from the temp ones
+
+            }
+        }
+    }
+    if (n == 3) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                temp[i][j] = image[((i / 2) + SIZE / 2)][j / 2];
+
+            }
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = temp[i][j]; //get image[i][j] values from the temp ones
+
+            }
+        }
+    }
+    if (n == 4) {
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                temp[i][j] = image[(i / 2) + SIZE / 2][((j / 2) + SIZE / 2)];
+            }
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = temp[i][j]; //get image[i][j] values from the temp ones
+
+            }
+
+        }
+    }
+}
+
+//-------------------------------------------------
 void mirror(){
      int mirrorType;
     cout << "Select mirroring type:" << endl;
