@@ -1,4 +1,4 @@
-CS213-2023-20220502-20220520-20221141-A1-Part1.cpp
+// FCAI – OOP Programming – 2023 - Assignment 1
 // Purpose: Demonstrate use of bmplip for handling
 //          bmp colored and grayscale images
 //          Program load a gray image and store in another file
