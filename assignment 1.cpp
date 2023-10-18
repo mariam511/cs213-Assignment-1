@@ -409,7 +409,7 @@ void Detect_Edges() {
 void EnlargeImage() {
     unsigned char temp[SIZE][SIZE];
 
-    cout << "Which quarter do you want to enlarge? 1,2,3 or 4\n"; //choose  what degree do you want to rotate the image
+    cout << "Which quarter do you want to enlarge? 1,2,3 or 4\n"; //choose  which quarter to enlarge
     int n;
     cin >> n;
 
