@@ -3,7 +3,7 @@
 // Last Modification Date:    9/10/2023
 // Author1 and ID and Group:    Josiane Usama - 20220502 - email:josianeosama975@gmail.com
 // Author2 and ID and Group:    Eihab Muhammed - 20220520 - email: eihabmuhammed56@gmail.com
-// Author3 and ID and Group:    Mariem Ayman   - 20221141 - email:jwrjabw49@gmail.com
+// Author3 and ID and Group:    Mariam Ayman   - 20221141 - email:jwrjabw49@gmail.com
 
 #include <iostream>
 #include <algorithm>
