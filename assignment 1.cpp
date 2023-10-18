@@ -347,6 +347,35 @@ void darken_And_Lighten() {
     }
 
 }
+//-----------------------------------------------------
+
+void Detect_Edges() {
+    unsigned char detect_image[SIZE][SIZE];
+    for (int j = 0; j < SIZE-1; j++)
+    {
+        for (int i = 0; i< SIZE-1; i++) 
+        {
+
+            if(image[i][j]==image[i+1][j+1])
+            {
+                detect_image[i][j] = image[i][j];
+            }
+            if((abs(image[i][j]-image[i+1][j]>=24))||(abs(image[i][j]-image[i][j+1]>=24))){
+                detect_image[i][j] = 0;
+            }
+            else{
+                detect_image[i][j] = 255;
+            }
+        }
+    }
+    for (int j = 0; j < SIZE-1; j++)
+    {
+        for (int i = 0; i< SIZE-1; i++) {
+            image[i][j] = detect_image[i][j];
+        }
+    }
+}
+
 //------------------------------------------------
 
 void EnlargeImage() {
@@ -457,29 +486,5 @@ void mirror(){
    }
 
 }
-void Detect_Edges() {
-    unsigned char detect_image[SIZE][SIZE];
-    for (int j = 0; j < SIZE-1; j++)
-    {
-        for (int i = 0; i< SIZE-1; i++) 
-        {
+//--------------------------------------------------
 
-            if(image[i][j]==image[i+1][j+1])
-            {
-                detect_image[i][j] = image[i][j];
-            }
-            if((abs(image[i][j]-image[i+1][j]>=24))||(abs(image[i][j]-image[i][j+1]>=24))){
-                detect_image[i][j] = 0;
-            }
-            else{
-                detect_image[i][j] = 255;
-            }
-        }
-    }
-    for (int j = 0; j < SIZE-1; j++)
-    {
-        for (int i = 0; i< SIZE-1; i++) {
-            image[i][j] = detect_image[i][j];
-        }
-    }
-}
