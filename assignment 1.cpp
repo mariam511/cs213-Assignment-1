@@ -57,7 +57,8 @@ void saveImage ();
 int main()
 {
     cout<<" enter the number of the filter you want from here : "<<endl; //knowing the effect to call it's specicif function
-    cout<<"1-black_white\n"<<"2-invert\n"<<"3-merge\n"<<"4-flip\n"<<"5-rotate\n"<<"6-darken_And_Lighten \n"<<"7-mirror \n"<<"8-Detect edges \n";
+    cout<<"1-black_white\n"<<"2-invert\n"<<"3-merge\n"<<"4-flip\n"<<"5-rotate\n"<<"6-darken_And_Lighten \n"<<"7-Detect edges \n"
+        <<"8-Enlarge Image \n";
     cin>>effect;
     cout<<endl;
     loadImage();
