@@ -37,11 +37,22 @@ void saveImage ();
 
 /*6*/void darken_And_Lighten();
 
-/*7*/void mirror();
+/*7*/ void Detect_Edges();
 
- /*8*/ void Detect_Edges();
+/*8*/ void EnlargeImage();
 
 
+/*9*/
+
+/*a*/void mirror();
+
+/*b*/
+
+/*c*/
+
+/*d*/
+
+/*e,f*/
 
 int main()
 {
