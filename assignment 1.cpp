@@ -1,6 +1,6 @@
 // FCAI – OOP Programming – 2023 - Assignment 1
 // Program Name:               CS213.cpp
-//          bmp colored and grayscale images
+// Last Modification Date:    9/10/2023
 //          Program load a gray image and store in another file
 // Author:  Mohammad El-Ramly
 // Date:    30 March 2018
