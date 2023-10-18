@@ -1,7 +1,7 @@
 // FCAI – OOP Programming – 2023 - Assignment 1
 // Program Name:               CS213.cpp
 // Last Modification Date:    9/10/2023
-//          Program load a gray image and store in another file
+// Author1 and ID and Group:    Josiane Usama - 20220502 - email:josianeosama975@gmail.com
 // Author:  Mohammad El-Ramly
 // Date:    30 March 2018
 // Version: 1.0
