@@ -444,47 +444,51 @@ void EnlargeImage() {
 
 //-------------------------------------------------
 void mirror(){
-     int mirrorType;
+    int mirrorType;
     cout << "Select mirroring type:" << endl;
-    cout << "1- Mirror Left Half" << endl;
-    cout << "2- Mirror Right Half" << endl;
-    cout << "3- Mirror Upper Half" << endl;
-    cout << "4- Mirror Lower Half" << endl;
+    cout << "1- Mirror left Half" << endl;
+    cout << "2- Mirror right Half" << endl;
+    cout << "3- Mirror upper Half" << endl;
+    cout << "4- Mirror lower Half" << endl;
     cin >> mirrorType;
 
-    if(mirrorType==1){
-            for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < SIZE / 2; ++j) {
-            image[i][j] = image[i][SIZE - j - 1];
-        }
-    }
-
-    }
-    if(mirrorType==2)
+    if(mirrorType==1)
     {
-       
-    for (int i = 0; i < SIZE; ++i) {
-        for (int j = 0; j < SIZE / 2; ++j) {
-            image[i][SIZE - j - 1] = image[i][j];
-        }
+
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE / 2; ++j) {
+                image[i][SIZE - j - 1] = image[i][j];
+            }
         }
     }
     
-    if(mirrorType==3){
+    else if(mirrorType==2){
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE / 2; ++j) {
+                image[i][j] = image[i][SIZE - j - 1];
+            }
+        }
+
+    }
+
+    else if(mirrorType==3){
         for (int i = 0; i < SIZE / 2; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
-            image[i][j] = image[SIZE - i - 1][j];
+            for (int j = 0; j < SIZE; ++j) {
+                image[SIZE - i - 1][j] = image[i][j];
+            }
         }
     }
-}
-   if(mirrorType==4){
+    
+    else if(mirrorType==4){
         for (int i = 0; i < SIZE / 2; ++i) {
-        for (int j = 0; j < SIZE; ++j) {
-            image[SIZE - i - 1][j] = image[i][j];
+            for (int j = 0; j < SIZE; ++j) {
+                image[i][j] = image[SIZE - i - 1][j];
+            }
         }
     }
-   }
+    
 
 }
+
 //--------------------------------------------------
 
