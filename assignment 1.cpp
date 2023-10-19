@@ -770,28 +770,22 @@ void BlurImage() {
 }
 //------------------------------------------------------
 
-void crop_image() {
-    cout<<"please,enter x,y,l and w\n";
+cout<<"please,enter x,y,l and w\n";
 
-    unsigned char temp[SIZE][SIZE];
-    int x,y,l,w;
-    cin>>x>>y>>l>>w;
-    for(int i=0;i<SIZE;i++){
-        for(int j=0;j<SIZE;j++){
-            temp[i][j]=255;
+        unsigned char temp[SIZE][SIZE];
+        int x,y,l,w;
+        cin>>x>>y>>l>>w;
+        for(int i=0;i<SIZE;i++){
+            for(int j=0;j<SIZE;j++){
+                if(i>=x&&i<=l+x&&j>=y&&j<=y+w){temp[i][j]=image[i][j];}
+                else{temp[i][j]=255;}
+            }
         }
-    }
-    for(int i=x;i<SIZE-l;i++){
-        for(int j=y;j<SIZE-w;j++){
-            temp[i][j]=image[i][j];
+        for(int i=0;i<SIZE;i++){
+            for(int j=0;j<SIZE;j++){
+                image[i][j]=temp[i][j];
+            }
         }
-    }
-    for(int i=0;i<SIZE;i++){
-        for(int j=0;j<SIZE;j++){
-            image[i][j]=temp[i][j];
-        }
-    }
-}
 
 //---------------------------------------------------------
 // This function skews an image vertically or horizontally by a given angle
