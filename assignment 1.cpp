@@ -741,12 +741,16 @@ void Shuffle_Image() {
 
 
 //---------------------------------------------------------
+// This function blurs an image by applying a smoothing filter 
 void BlurImage() {
     int x = 2;
+ // Repeat the blurring process twice
     while (x >= 0) {
+// Loop through each row of the image except the first and last one
         for (int i = 1; i < 255; i++) {
+// Loop through each column of the image except the first and last one
             for (int j = 1; j < 255; j++) {
-                // Calculate the average of surrounding pixels
+                 // Calculate the average of surrounding pixels and store it in a new array
                 image2[i][j] = (image[i - 1][j - 1] + image[i - 1][j] + image[i - 1][j + 1] +
                                 image[i][j - 1] + image[i][j + 1] +
                                 image[i + 1][j - 1] + image[i + 1][j] + image[i + 1][j + 1]) / 8;
@@ -754,6 +758,7 @@ void BlurImage() {
         }
         for (int l = 1; l < 255; l++) {
             for (int m = 1; m < 255; m++) {
+ // Calculate the average of surrounding pixels and store it back in the original array 
                 image[l][m] = (image2[l - 1][m - 1] + image2[l - 1][m] + image2[l - 1][m + 1] +
                                image2[l][m - 1] + image2[l][m + 1] +
                                image2[l + 1][m - 1] + image2[l + 1][m] + image2[l + 1][m + 1]) / 8;
