@@ -51,9 +51,9 @@ void saveImage ();
 
 /*c*/ void BlurImage();
 
-/*d*/
+/*d*/ void crop_image();
 
-/*e,f*/ skew();
+/*e,f*/ void skew();
 
 
 int main() {
@@ -104,6 +104,9 @@ int main() {
         }
         else if (effect == "12") {
             BlurImage();
+        }
+        else if(effect=="13"){
+            crop_image();
         }
         else if(effect=="14"){
             skew();
@@ -730,12 +733,38 @@ void BlurImage() {
 
 }
 //------------------------------------------------------
+
+void crop_image() {
+    cout<<"please,enter x,y,l and w\n";
+
+    unsigned char temp[SIZE][SIZE];
+    int x,y,l,w;
+    cin>>x>>y>>l>>w;
+    for(int i=0;i<SIZE;i++){
+        for(int j=0;j<SIZE;j++){
+            temp[i][j]=255;
+        }
+    }
+    for(int i=x;i<SIZE-l;i++){
+        for(int j=y;j<SIZE-w;j++){
+            temp[i][j]=image[i][j];
+        }
+    }
+    for(int i=0;i<SIZE;i++){
+        for(int j=0;j<SIZE;j++){
+            image[i][j]=temp[i][j];
+        }
+    }
+}
+
+//---------------------------------------------------------
 void skew(){
     cout<<"1- Vertically \n"<<"2-Horizontally : ";
     int choice;
     cin>>choice;
     if(choice==1) {
         double rad;
+        cout<<"Enter the angle you want";
         cin >> rad;
         rad = (rad * 22) / (180 * 7);
         unsigned char img_in[SIZE][SIZE];
@@ -776,9 +805,12 @@ void skew(){
             }
         }
     }
+
+
     else if(choice==2) {
         //skew horizontally
         double rad;
+        cout<<"Enter the angle you want";
         cin >> rad;
         rad = (rad * 22) / (180 * 7);
         unsigned char img_in[SIZE][SIZE];
