@@ -367,22 +367,30 @@ void rotate_Images() {
 
 void darken_And_Lighten() {
     string choice;
+// Print the options to the console
     cout << "1- darken \n"" 2- lighten :";
     cin >> choice;
     cout << endl;
     if (choice == "1") {
+ // Loop through each row of the image
         for (int i = 0; i < SIZE; i++) {
+// Loop through each column of the image
             for (int j = 0; j < SIZE; j++) {
-                image[i][j] =  (image[i][j])/3;// in this line we are adding zero to the main pixel and getting the average of the original image and the dark one
-                // to make it darker by 50%
+// Divide the pixel value at position (i, j) by 3 and store it in the same position
+// This reduces the brightness of the pixel by 50% 
+                image[i][j] =  (image[i][j])/2;
             }
         }
     }
+
     else if (choice == "2") {
+// Loop through each row of the image
             for (int i = 0; i < SIZE; i++) {
+// Loop through each column of the image
                 for (int j = 0; j < SIZE; j++) {
-                    image[i][j] = (image[i][j] + 255) /2;   // in this line we are adding 255 to the main pixel and getting the average of both the white image and the original
-                    // to make it brighter by 50%
+// Add 255 to the pixel value at position (i, j) and divide it by 2 and store it in the same position
+// This increases the brightness of the pixel by 50%
+                    image[i][j] = (image[i][j] + 255) /2;   
 
                 }
             }
