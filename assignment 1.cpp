@@ -4,7 +4,7 @@
 // Last Modification Date:    9/10/2023
 // Author1 and ID and Group:    Josiane Usama - 20220502 - email:josianeosama975@gmail.com
 // Author2 and ID and Group:    Eihab Muhammed - 20220520 - email: eihabmuhammed56@gmail.com
-// Author3 and ID and Group:    Mariam Ayman   - 20221141 - email:jwrjabw49@gmail.com
+// Author3 and ID and Group:    Mariem Ayman   - 20221141 - email:jwrjabw49@gmail.com
 
 
 #include <iostream>
@@ -53,7 +53,7 @@ void saveImage ();
 
 /*d*/
 
-/*e,f*/
+/*e,f*/ skew();
 
 
 int main() {
@@ -63,7 +63,7 @@ int main() {
          << endl; //knowing the effect to call it's specicif function
     cout << "1-black_white\n" << "2-invert\n" << "3-merge\n" << "4-flip\n" << "5-rotate\n" << "6-darken_And_Lighten \n"
          <<"7-Detect Edges \n"<<"8-Enlarge Image \n"<< "9-shrinkImage \n" <<"10- mirror \n"<<"11-Shuffle Image \n"
-         << "12-BlurImage : ";
+         << "12-BlurImage \n"<<"13-crop image \n"<<"14-skew : ";
 
 
     while (cont == true) {
@@ -104,6 +104,9 @@ int main() {
         }
         else if (effect == "12") {
             BlurImage();
+        }
+        else if(effect=="14"){
+            skew();
         }
         cout<<"do you want another filter ?\n";
         string ans;
@@ -409,7 +412,7 @@ void Detect_Edges() {
 void EnlargeImage() {
     unsigned char temp[SIZE][SIZE];
 
-    cout << "Which quarter do you want to enlarge? 1,2,3 or 4\n"; //choose  which quarter to enlarge
+    cout << "Which quarter do you want to enlarge? 1,2,3 or 4\n"; //choose  what degree do you want to rotate the image
     int n;
     cin >> n;
 
@@ -727,3 +730,101 @@ void BlurImage() {
 
 }
 //------------------------------------------------------
+void skew(){
+    cout<<"1- Vertically \n"<<"2-Horizontally : ";
+    int choice;
+    cin>>choice;
+    if(choice==1) {
+        double rad;
+        cin >> rad;
+        rad = (rad * 22) / (180 * 7);
+        unsigned char img_in[SIZE][SIZE];
+        int x;
+        x = (tan(rad) * 256) / (tan(rad) + 1);
+        // Initialize the output image with white pixels
+
+        for (int i = 0; i < SIZE; i++)
+            for (int j = 0; j < SIZE; j++)
+                img_in[i][j] = 255;
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                img_in[i][(j * x) / SIZE] = image[i][j];
+            }
+            //mov -= step ;
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = img_in[i][j];
+            }
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                img_in[i][j] = 255;
+            }
+        }
+        double step = SIZE - x; // عدد الخطوات
+        double mov = step / SIZE;
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = (int) step; j < step + x; ++j) {
+                img_in[i][j] = image[i][(int) (j - step)];
+            }
+            step -= mov;
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = img_in[i][j];
+            }
+        }
+    }
+    else if(choice==2) {
+        //skew horizontally
+        double rad;
+        cin >> rad;
+        rad = (rad * 22) / (180 * 7);
+        unsigned char img_in[SIZE][SIZE];
+        int y;
+        y = (tan(rad) * 256) / (tan(rad) + 1);
+
+        // Initialize the output image with white pixels
+        for (int i = 0; i < SIZE; i++)
+            for (int j = 0; j < SIZE; j++)
+                img_in[i][j] = 255;
+
+        // Copy the input image to the output image with horizontal skew
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                img_in[(i * y) / SIZE][j] = image[i][j];
+            }
+        }
+
+        // Copy the output image back to the input image
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = img_in[i][j];
+            }
+        }
+
+        // Initialize the output image with white pixels again
+        for (int i = 0; i < SIZE; i++)
+            for (int j = 0; j < SIZE; j++)
+                img_in[i][j] = 255;
+
+        // Adjust the output image to fit the skewed input image
+        double step = SIZE - y; // The number of steps
+        double mov = step / SIZE;
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = (int) step; j < step + y; ++j) {
+                img_in[j][i] = image[(int) (j - step)][i];
+            }
+            step -= mov;
+        }
+
+        // Copy the output image back to the input image again
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = img_in[i][j];
+            }
+        }
+
+    }
+}
