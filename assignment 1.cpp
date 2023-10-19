@@ -287,6 +287,7 @@ void flip_image() {
     }
 }
 //-------------------------------------------
+// This function merges two images by taking the average of their pixel values 
 void merge() {
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j< SIZE; j++) {
