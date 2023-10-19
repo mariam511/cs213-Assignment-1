@@ -363,6 +363,8 @@ void rotate_Images() {
     }
 }
 //---------------------------------------------------
+// This function darkens or lightens an image by asking the user to choose an option
+
 void darken_And_Lighten() {
     string choice;
     cout << "1- darken \n"" 2- lighten :";
