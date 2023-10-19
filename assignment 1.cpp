@@ -794,28 +794,34 @@ void crop_image() {
 }
 
 //---------------------------------------------------------
+// This function skews an image vertically or horizontally by a given angle
+
 void skew(){
+// Print the options to the console
     cout<<"1- Vertically \n"<<"2-Horizontally : ";
     int choice;
     cin>>choice;
+// skew vwrtically
     if(choice==1) {
         double rad;
         cout<<"Enter the angle you want";
         cin >> rad;
+// Convert the angle from degrees to radians 
         rad = (rad * 22) / (180 * 7);
         unsigned char img_in[SIZE][SIZE];
         int x;
+// Calculate the horizontal shift factor based on the angle
         x = (tan(rad) * 256) / (tan(rad) + 1);
-        // Initialize the output image with white pixels
-
+// Initialize the new array with white pixels
         for (int i = 0; i < SIZE; i++)
             for (int j = 0; j < SIZE; j++)
                 img_in[i][j] = 255;
+
+// Copy the pixel value from the original image to the new array with a horizontal shift proportional to the column index
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 img_in[i][(j * x) / SIZE] = image[i][j];
             }
-            //mov -= step ;
         }
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
@@ -827,8 +833,10 @@ void skew(){
                 img_in[i][j] = 255;
             }
         }
-        double step = SIZE - x; // عدد الخطوات
-        double mov = step / SIZE;
+        double step = SIZE - x;  // The number of steps to shift the image horizontally double 
+        double mov = step / SIZE; // The amount of shift per row
+
+ // Copy the pixel value from the original image to the new array with a horizontal shift inversely proportional to the row index
         for (int i = 0; i < SIZE; ++i) {
             for (int j = (int) step; j < step + x; ++j) {
                 img_in[i][j] = image[i][(int) (j - step)];
@@ -848,6 +856,7 @@ void skew(){
         double rad;
         cout<<"Enter the angle you want";
         cin >> rad;
+// Convert the angle from degrees to radians 
         rad = (rad * 22) / (180 * 7);
         unsigned char img_in[SIZE][SIZE];
         int y;
