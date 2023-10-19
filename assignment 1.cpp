@@ -492,30 +492,47 @@ void EnlargeImage() {
 
 
 //------------------------------------------
+// This function shrinks an image by a given scale factor 
+
 void shrinkImage(){
     int scale;
+// Ask the user to choose a scale factor from the options 
     cout<< "shrink the image dimentions to : \n"<<"1---> 1/2 \n"<<"2---> 1/3 \n" <<"3---> 1/4 :";
     cin>>scale;
+// Add one to the scale factor to match the options 
     scale=scale+1;
     for(int a=0 ; a<SIZE ; a++){
         for(int s=0 ; s<SIZE ; s++){
+// Initialize the new array with white pixels
             image2[a][s]=255;
         }
     }
-    int newWidth = 256 / scale;
-    int newHeight = 256 / scale;
+// Calculate the new width and height of the image based on the scale factor
+    int new_width = 256 / scale;
+    int new_height = 256 / scale;
 
-    for (int i = 0; i < newHeight; i++) {
-        for (int j = 0; j < newWidth; j++) {
+// Loop through each row of the new image
+    for (int i = 0; i < new_height; i++) {
+    // Loop through each column of the new image
+
+        // Loop through each pixel in the original image that corresponds to the position (i, j) in the new image
+
+        for (int j = 0; j < new_width; j++) {
             int sum = 0;
             for (int k = i * scale; k < (i + 1) * scale; k++) {
                 for (int l = j * scale; l < (j + 1) * scale; l++) {
+                // Add the pixel value to the sum
+
                     sum += image[k][l];
                 }
             }
+        // Take the average of the sum and store it in the new image
+
             image2[i][j] = sum / (scale * scale);
         }
     }
+// Copy the new image to the original image array
+
     for(int y=0;y<SIZE;y++){
         for (int u =0; u<SIZE ; u++){
             image[y][u]=image2[y][u];
