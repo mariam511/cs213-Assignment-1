@@ -4,7 +4,7 @@
 // Last Modification Date:    9/10/2023
 // Author1 and ID and Group:    Josiane Usama - 20220502 - email:josianeosama975@gmail.com
 // Author2 and ID and Group:    Eihab Muhammed - 20220520 - email: eihabmuhammed56@gmail.com
-// Author3 and ID and Group:    Mariem Ayman   - 20221141 - email:jwrjabw49@gmail.com
+// Author3 and ID and Group:    Mariam Ayman   - 20221141 - email:jwrjabw49@gmail.com
 
 
 #include <iostream>
@@ -287,7 +287,7 @@ void flip_image() {
     }
 }
 //-------------------------------------------
-// This function merges two images by taking the average of their pixel values 
+// This function merges two images by taking the average of their pixel values
 void merge() {
 // Loop through each row of the images
     for (int i = 0; i < SIZE; i++) {
@@ -372,12 +372,12 @@ void darken_And_Lighten() {
     cin >> choice;
     cout << endl;
     if (choice == "1") {
- // Loop through each row of the image
+        // Loop through each row of the image
         for (int i = 0; i < SIZE; i++) {
 // Loop through each column of the image
             for (int j = 0; j < SIZE; j++) {
 // Divide the pixel value at position (i, j) by 3 and store it in the same position
-// This reduces the brightness of the pixel by 50% 
+// This reduces the brightness of the pixel by 50%
                 image[i][j] =  (image[i][j])/2;
             }
         }
@@ -385,18 +385,17 @@ void darken_And_Lighten() {
 
     else if (choice == "2") {
 // Loop through each row of the image
-            for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < SIZE; i++) {
 // Loop through each column of the image
-                for (int j = 0; j < SIZE; j++) {
+            for (int j = 0; j < SIZE; j++) {
 // Add 255 to the pixel value at position (i, j) and divide it by 2 and store it in the same position
 // This increases the brightness of the pixel by 50%
-                    image[i][j] = (image[i][j] + 255) /2;   
+                image[i][j] = (image[i][j] + 255) /2;
 
-                }
             }
         }
     }
-//----------------------------------------
+}//----------------------------------------
 
 void Detect_Edges() {
     unsigned char detect_image[SIZE][SIZE];
@@ -492,14 +491,14 @@ void EnlargeImage() {
 
 
 //------------------------------------------
-// This function shrinks an image by a given scale factor 
+// This function shrinks an image by a given scale factor
 
 void shrinkImage(){
     int scale;
-// Ask the user to choose a scale factor from the options 
+// Ask the user to choose a scale factor from the options
     cout<< "shrink the image dimentions to : \n"<<"1---> 1/2 \n"<<"2---> 1/3 \n" <<"3---> 1/4 :";
     cin>>scale;
-// Add one to the scale factor to match the options 
+// Add one to the scale factor to match the options
     scale=scale+1;
     for(int a=0 ; a<SIZE ; a++){
         for(int s=0 ; s<SIZE ; s++){
@@ -513,7 +512,7 @@ void shrinkImage(){
 
 // Loop through each row of the new image
     for (int i = 0; i < new_height; i++) {
-    // Loop through each column of the new image
+        // Loop through each column of the new image
 
         // Loop through each pixel in the original image that corresponds to the position (i, j) in the new image
 
@@ -521,12 +520,12 @@ void shrinkImage(){
             int sum = 0;
             for (int k = i * scale; k < (i + 1) * scale; k++) {
                 for (int l = j * scale; l < (j + 1) * scale; l++) {
-                // Add the pixel value to the sum
+                    // Add the pixel value to the sum
 
                     sum += image[k][l];
                 }
             }
-        // Take the average of the sum and store it in the new image
+            // Take the average of the sum and store it in the new image
 
             image2[i][j] = sum / (scale * scale);
         }
@@ -741,16 +740,16 @@ void Shuffle_Image() {
 
 
 //---------------------------------------------------------
-// This function blurs an image by applying a smoothing filter 
+// This function blurs an image by applying a smoothing filter
 void BlurImage() {
     int x = 2;
- // Repeat the blurring process twice
+    // Repeat the blurring process twice
     while (x >= 0) {
 // Loop through each row of the image except the first and last one
         for (int i = 1; i < 255; i++) {
 // Loop through each column of the image except the first and last one
             for (int j = 1; j < 255; j++) {
-                 // Calculate the average of surrounding pixels and store it in a new array
+                // Calculate the average of surrounding pixels and store it in a new array
                 image2[i][j] = (image[i - 1][j - 1] + image[i - 1][j] + image[i - 1][j + 1] +
                                 image[i][j - 1] + image[i][j + 1] +
                                 image[i + 1][j - 1] + image[i + 1][j] + image[i + 1][j + 1]) / 8;
@@ -758,7 +757,7 @@ void BlurImage() {
         }
         for (int l = 1; l < 255; l++) {
             for (int m = 1; m < 255; m++) {
- // Calculate the average of surrounding pixels and store it back in the original array 
+                // Calculate the average of surrounding pixels and store it back in the original array
                 image[l][m] = (image2[l - 1][m - 1] + image2[l - 1][m] + image2[l - 1][m + 1] +
                                image2[l][m - 1] + image2[l][m + 1] +
                                image2[l + 1][m - 1] + image2[l + 1][m] + image2[l + 1][m + 1]) / 8;
@@ -767,25 +766,27 @@ void BlurImage() {
         x--;
     }
 
+}//------------------------------------------------------
+
+void crop_image() {
+    cout<<"please,enter x,y,l and w\n";
+
+
+    unsigned char temp[SIZE][SIZE];
+    int x,y,l,w;
+    cin>>x>>y>>l>>w;
+    for(int i=0;i<SIZE;i++){
+        for(int j=0;j<SIZE;j++){
+            if(i>=x&&i<=l+x&&j>=y&&j<=y+w){temp[i][j]=image[i][j];}
+            else{temp[i][j]=255;}
+        }
+    }
+    for(int i=0;i<SIZE;i++){
+        for(int j=0;j<SIZE;j++){
+            image[i][j]=temp[i][j];
+        }
+    }
 }
-//------------------------------------------------------
-
-cout<<"please,enter x,y,l and w\n";
-
-        unsigned char temp[SIZE][SIZE];
-        int x,y,l,w;
-        cin>>x>>y>>l>>w;
-        for(int i=0;i<SIZE;i++){
-            for(int j=0;j<SIZE;j++){
-                if(i>=x&&i<=l+x&&j>=y&&j<=y+w){temp[i][j]=image[i][j];}
-                else{temp[i][j]=255;}
-            }
-        }
-        for(int i=0;i<SIZE;i++){
-            for(int j=0;j<SIZE;j++){
-                image[i][j]=temp[i][j];
-            }
-        }
 
 //---------------------------------------------------------
 // This function skews an image vertically or horizontally by a given angle
@@ -800,7 +801,7 @@ void skew(){
         double rad;
         cout<<"Enter the angle you want";
         cin >> rad;
-// Convert the angle from degrees to radians 
+// Convert the angle from degrees to radians
         rad = (rad * 22) / (180 * 7);
         unsigned char img_in[SIZE][SIZE];
         int x;
@@ -827,10 +828,10 @@ void skew(){
                 img_in[i][j] = 255;
             }
         }
-        double step = SIZE - x;  // The number of steps to shift the image horizontally double 
+        double step = SIZE - x;  // The number of steps to shift the image horizontally double
         double mov = step / SIZE; // The amount of shift per row
 
- // Copy the pixel value from the original image to the new array with a horizontal shift inversely proportional to the row index
+        // Copy the pixel value from the original image to the new array with a horizontal shift inversely proportional to the row index
         for (int i = 0; i < SIZE; ++i) {
             for (int j = (int) step; j < step + x; ++j) {
                 img_in[i][j] = image[i][(int) (j - step)];
@@ -850,7 +851,7 @@ void skew(){
         double rad;
         cout<<"Enter the angle you want";
         cin >> rad;
-// Convert the angle from degrees to radians 
+// Convert the angle from degrees to radians
         rad = (rad * 22) / (180 * 7);
         unsigned char img_in[SIZE][SIZE];
         int y;
